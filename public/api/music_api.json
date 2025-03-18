@@ -6,6 +6,6 @@
         "artist":"Звери",
         "duration": "3.07",
         "image":"./api/music/Zver.png" ,
-        "ulr":"./api/music/zveri-rajjony-kvartaly.mp3"
+        "url":"./api/music/zveri-rajjony-kvartaly.mp3"
     }
 ]
