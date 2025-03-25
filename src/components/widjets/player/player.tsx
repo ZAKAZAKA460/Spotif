@@ -4,10 +4,12 @@ import IconPref from "@/assets/icons/MusicPlayer/iconPref";
 import IconPlay from "@/assets/icons/MusicPlayer/iconPlay";
 import IconNext from "@/assets/icons/MusicPlayer/iconNext";
 import IconArrowHide from "@/assets/icons/MusicPlayer/iconArrowHide";
-import { MouseEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { formatTime } from "@/components/shared/utils/formatTime.ts";
 import IconPause from "@/assets/icons/MusicPlayer/iconPause.tsx";
+import IconMute from "@/assets/icons/MusicPlayer/iconMute";
+import IconVolume from "@/assets/icons/MusicPlayer/iconVolume";
 
 interface IMusicData {
   id: number;
@@ -30,6 +32,10 @@ export default function Player() {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
   const [musicData, setMusicData] = useState<IMusicData | null>(null);
+
+  const [volume, setVoleme] = useState(1)
+
+  const [isMute, setIsMute] = useState(false)
 
   const musicRef = useRef<HTMLAudioElement>(null);
 
@@ -96,6 +102,21 @@ export default function Player() {
       audio.currentTime = seekTime;
 
     }
+  };
+
+  const handleVolumeChange = (event:ChangeEvent<HTMLInputElement>)=>{
+    const audio = musicRef.current;
+    if (!audio || !event.currentTarget) return
+    audio.volume = Number(event.currentTarget.value);
+      
+  }
+
+  const HandleChangeMute=() => {
+    const audio= musicRef.current;
+    if (!audio) return;
+
+    setIsMute((prevState)=> !prevState)
+    audio.muted = !audio.muted
   }
 
   return (
@@ -134,7 +155,13 @@ export default function Player() {
           <p>{formatTime(duration)}</p>
         </div>
       </section>
-      <section className={s.right}></section>
+      <section className={s.right}>
+        <div className={s.volume_wrapper}>
+          <ButtonIcon handleClick ={HandleChangeMute} icon = { isMute ?<IconMute/> :<IconVolume/>}/>
+         <input className={s.volume} onInput={handleVolumeChange} type="range" min={0} max={1} step={0.01}/>
+        </div>
+        
+      </section>
       <audio ref={musicRef} src={musicData?.url}></audio>
     </div>
   );
