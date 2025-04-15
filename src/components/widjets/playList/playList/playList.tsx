@@ -1,8 +1,15 @@
+import axios from "axios";
 import PlaylistItem from "../playListItem/playListItem";
 import s from "./style.module.css"
 import clock from "@/assets/icons/other/clock.svg"
+import { Fragment, useEffect, useState } from "react";
 
-const Playlist = ()=> {
+interface PlayListProps{
+    musicList:any[];
+}
+
+const Playlist = ({musicList}: PlayListProps)=> {
+
     return <table>
         <thead>
             <tr>
@@ -14,9 +21,14 @@ const Playlist = ()=> {
             </tr>
         </thead>
         <tbody>
-            <PlaylistItem/>
-            <PlaylistItem/>
-            <PlaylistItem/>
+            {
+              musicList &&  musicList.map((item, i)=>{
+                    return(
+                        <Fragment key={i}>
+                            <PlaylistItem item={item} index={i+1}/>
+                        </Fragment>
+                    )
+                })}
         </tbody>
     </table>
         

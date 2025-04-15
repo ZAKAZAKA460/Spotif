@@ -4,9 +4,3 @@ export default function Main() {
     </main>
     )
 }
-export default function Login() {
-    return( <login>
-        <h1>Login</h1>
-    </login>
-    )
-}
