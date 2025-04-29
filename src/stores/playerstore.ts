@@ -1,7 +1,12 @@
 import { IMusicData } from "@/interfaces/interfaces";
 import axios from "axios";
+import { makeAutoObservable } from "mobx";
 
 class PlayerStore {
+
+    constructor(){
+        makeAutoObservable(this)
+    }
     currentMusic:IMusicData ={} as IMusicData;
     setCurrentMusic(music:IMusicData ){
         this.currentMusic = music;
