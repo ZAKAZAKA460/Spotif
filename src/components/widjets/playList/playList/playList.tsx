@@ -3,9 +3,10 @@ import PlaylistItem from "../playListItem/playListItem";
 import s from "./style.module.css"
 import clock from "@/assets/icons/other/clock.svg"
 import { Fragment, useEffect, useState } from "react";
+import { IMusicData } from "@/interfaces/interfaces";
 
 interface PlayListProps{
-    musicList:any[];
+    musicList:IMusicData[];
 }
 
 const Playlist = ({musicList}: PlayListProps)=> {

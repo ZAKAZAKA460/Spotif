@@ -2,30 +2,28 @@ import { ButtonIcon } from "@/components/shared/ui/buttons/button";
 import s from "./style.module.css"
 import IconArrowHide from "@/assets/icons/MusicPlayer/iconArrowHide";
 import IconPlay from "@/assets/icons/MusicPlayer/iconPlay";
+import { IMusicData } from "@/interfaces/interfaces";
+import playerstore from "@/stores/playerstore";
 
-type IPLayListItem = {
-    "id":number,
-    "title":string,
-    "artist":string,
-    "duration": string,
-    "image":string,
-    "year":number,
-    "url":string
-}
+
 
 interface IPlayListItemProps{
-    item:IPLayListItem;
+    item:IMusicData;
     index:number
 
 }
 
 const PlaylistItem = ({item, index}:IPlayListItemProps)=>{
+
+    const handlePlay = ()=>{
+        playerstore.fetchMusicById(item.id);
+    }
     return (
     <tr className={s.wrapper}>
         <td>
             <div className={s.number_wrapper}>
             <p className={s.number}>1</p>
-            <ButtonIcon icon={<IconPlay />} />
+            <ButtonIcon handleClick={handlePlay} icon={<IconPlay />} />
             </div>
         </td>
         <td>

@@ -10,17 +10,15 @@ import { formatTime } from "@/components/shared/utils/formatTime.ts";
 import IconPause from "@/assets/icons/MusicPlayer/iconPause.tsx";
 import IconMute from "@/assets/icons/MusicPlayer/iconMute";
 import IconVolume from "@/assets/icons/MusicPlayer/iconVolume";
+import { IMusicData } from "@/interfaces/interfaces";
+import playerstore from "@/stores/playerstore";
 
-interface IMusicData {
-  id: number;
-  title: string;
-  artist: string;
-  duration: number;
-  image: string;
-  url: string;
-}
+
 
 export default function Player() {
+
+  const{currentMusic: musicData}= playerstore
+
   const [duration,setDuration ] = useState(0);
 
   const [progress,setProgress ] = useState(0);
@@ -31,7 +29,7 @@ export default function Player() {
 
   const [isPreviewOpen, setIsPreviewOpen] = useState(false);
 
-  const [musicData, setMusicData] = useState<IMusicData | null>(null);
+  //const [musicData, setMusicData] = useState<IMusicData | null>(null);
 
   const [volume, setVoleme] = useState(1)
 
@@ -39,24 +37,24 @@ export default function Player() {
 
   const musicRef = useRef<HTMLAudioElement>(null);
 
-  const getMusicData = async () => {
-    axios
-      .get("./api/music_api.json")
-      .then((response) => {
-        console.log(response);
-        setMusicData(response.data[0]);
-      })
-      .catch((error) => {
-        console.error("error", error);
-      })
-      .finally(() => {
-        console.log("work");
-      });
-  };
+ // const getMusicData = async () => {
+    //axios
+    //  .get("./api/music_api.json")
+     // .then((response) => {
+    //    console.log(response);
+     ///   setMusicData(response.data[0]);
+    //  })
+    //  .catch((error) => {
+      //  console.error("error", error);
+     // })
+     // .finally(() => {
+      //  console.log("work");
+      //});
+  //};
 
-  useEffect(() => {
-    getMusicData();
-  }, []);
+ // useEffect(() => {
+   // getMusicData();
+ // }, []);
 
   useEffect(() => {
     const audio = musicRef.current;
