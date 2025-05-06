@@ -1,0 +1,12 @@
+[
+    {
+        "title": "My Playlist",
+        "authorlist":"Jack Smith",
+        "img":"/api/music/Zver.png" 
+    },
+    {
+        "title": "My PlayLost",
+        "authorlist":"Jack Wonderfull",
+        "img":"/api/music/Zver.png" 
+    }
+]

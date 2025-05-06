@@ -1,0 +1,12 @@
+[
+
+    {
+        "id":1,
+        "title":"Районы-кварталы",
+        "artist":"Звери",
+        "duration": "3.07",
+        "image":"/api/music/Zver.png" ,
+        "year":"2009"
+,        "url":"/api/music/zveri-rajjony-kvartaly.mp3"
+    }
+]
