@@ -1,4 +1,4 @@
-import axios from "axios";
+
 import PlaylistItem from "../playListItem/playListItem";
 import s from "./style.module.css"
 import clock from "@/assets/icons/other/clock.svg"
@@ -11,7 +11,7 @@ interface PlayListProps{
 
 const Playlist = ({musicList}: PlayListProps)=> {
 
-    return <table>
+    return <table className={s.table}>
         <thead>
             <tr>
                 <th>#</th>
@@ -23,7 +23,7 @@ const Playlist = ({musicList}: PlayListProps)=> {
         </thead>
         <tbody>
             {
-              musicList &&  musicList.map((item, i)=>{
+              musicList.length !== 0 &&  musicList.map((item, i)=>{
                     return(
                         <Fragment key={i}>
                             <PlaylistItem item={item} index={i+1}/>

@@ -7,3 +7,9 @@ export interface IMusicData {
     url: string;
     year: number;
   }
+  export interface IPlaylist{
+    id:number;
+    title:string;
+    authorlist:string;
+    img: string;
+  }
